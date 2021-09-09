@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AppUserAuth } from './security/app-user-auth';
 import { SecurityService } from './security/security.service';
-import { ToastrService } from 'ngx-toastr';
+//import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ptc-root',
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AppComponent {
   title: string = "Nenad's Real-Time GPS Tracker";
   securityObject:AppUserAuth = null;
-  constructor(private securityService:SecurityService, private toastr:ToastrService){
+  constructor(private securityService:SecurityService){
       this.securityObject = securityService.securityObject;
   if (localStorage.getItem("access_token")) {
       this.securityObject.isAuthenticated=true;
@@ -20,10 +20,6 @@ export class AppComponent {
 
     
   }
-
-
-  
-
   private logout(): void {
     this.securityService.logout();
 

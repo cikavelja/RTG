@@ -26,6 +26,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderserviceService } from './shared/loaderservice.service';
 import { DownloadComponent } from './download/download/download.component';
+import { APP_BASE_HREF } from '@angular/common';
 //import { HttpClientModule } from '@angular/common/http'; 
 //import { HttpModule } from '@angular/http';
 
@@ -53,10 +54,13 @@ import { DownloadComponent } from './download/download/download.component';
     AppRoutingModule,
     HttpInterceptorModule,
     BrowserAnimationsModule,
+    // ToastrModule.forRoot({
+    //   timeOut: 2000,
+    //   positionClass: 'toast-top-right',
+    //   preventDuplicates: false
+    // }),
     ToastrModule.forRoot({
-      timeOut: 2000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: false
+      positionClass :'toast-bottom-right'
     }),
     LeafletModule,
     MatProgressSpinnerModule
@@ -65,7 +69,8 @@ import { DownloadComponent } from './download/download/download.component';
     SecurityService,
      RtgpsService,
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
-    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+    {provide: APP_BASE_HREF, useValue: '/dashboard'}
   ],
   bootstrap: [AppComponent]
 })

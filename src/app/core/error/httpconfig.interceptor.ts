@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { ToastrService } from 'ngx-toastr';
+//import { ToastrService } from 'ngx-toastr';
 
 import { SecurityService } from '../../security/security.service';
 import { LoaderserviceService } from '../../shared/loaderservice.service';
@@ -20,7 +20,7 @@ import { LoaderserviceService } from '../../shared/loaderservice.service';
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
     constructor(    
-        private tostr: ToastrService,
+        //private tostr: ToastrService,
         private security: SecurityService,
         public loaderService: LoaderserviceService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

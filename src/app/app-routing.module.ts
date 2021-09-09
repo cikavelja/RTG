@@ -49,7 +49,7 @@ const routes: Routes = [
     component: DownloadComponent
   },
   {
-    path: '', redirectTo: 'dashboard', pathMatch: 'full'
+    path: '', redirectTo: '/dashboard', pathMatch: 'full'
   },
   {
     path: '**', component: DashboardComponent
@@ -57,7 +57,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+      RouterModule.forRoot(routes)
+    ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

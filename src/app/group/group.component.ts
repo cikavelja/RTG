@@ -5,7 +5,7 @@ import { AppUser } from '../security/app-user';
 import { group } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { ToastrService } from 'ngx-toastr';
+//import { ToastrService } from 'ngx-toastr';
 import { SecurityService } from '../security/security.service';
 import { RtgpsService } from '../notify/rtgps.service';
 import { Group } from './GroupModel';
@@ -24,7 +24,7 @@ export class GroupComponent implements OnInit {
   constructor(private groupService: GroupService,
     private route: ActivatedRoute,
     private location: Location,
-    private tostr: ToastrService,
+    //private tostr: ToastrService,
     private security: SecurityService,
     private _rtgpsService: RtgpsService,
     ) { }
@@ -40,7 +40,7 @@ export class GroupComponent implements OnInit {
   private getUser(): void {
     this.groupService.getUser(this.search)
       .subscribe(user => this.user = user,
-        err => this.tostr.error("Error!", err.message),
+        err => console.error(err.message),
         () => this.userFound());
   }
 
@@ -59,7 +59,7 @@ export class GroupComponent implements OnInit {
       this.groupService.deleteGroup(id)
         .subscribe(
           () => this.groups = this.groups.filter(p => p.roomName != id),
-          err => this.tostr.error("Error!", err.message),
+          err => console.error(err.message),
           () => this.removeUserWS(id));
     }
   }
@@ -79,7 +79,7 @@ export class GroupComponent implements OnInit {
     } 
   }
   userErrorFound(err:any): void {
-    this.tostr.error("Error!", err.message);
+    //this.tostr.error("Error!", err.message);
     this.showAddUser = false;
   }
 
@@ -88,7 +88,7 @@ export class GroupComponent implements OnInit {
       // Update product
       this.groupService.addGroup(this.user)
         .subscribe(groups => { this.user = groups },
-          err => this.tostr.error("Error!", err.message),
+          err => console.error(err.message),
           () => this.getGroups());
           debugger;
           this._rtgpsService.addUserToRoom(this.user.userName);
@@ -99,7 +99,7 @@ export class GroupComponent implements OnInit {
     // Redirect back to list
     //this.goBack();
 
-    this.tostr.success("Success!", "User added!")
+    //this.tostr.success("Success!", "User added!")
   }
 
   
