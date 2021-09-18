@@ -17,11 +17,11 @@ export class GeolocationService {
   };
   constructor() {
     if (navigator.geolocation) {
-      debugger;
+      //debugger;
       this.isGeoLocationSupported = true;
     } else {
       // geolocation is not supported, fall back to other options
-      debugger;
+      //debugger;
       this.isGeoLocationSupported = false;
     }
   }
@@ -32,12 +32,12 @@ export class GeolocationService {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           position => {
-            debugger;
+            //debugger;
             obs.next(position);
             obs.complete();
           },
           error => {
-            debugger;
+            //debugger;
             obs.error(error);
           }
         );
@@ -49,11 +49,11 @@ export class GeolocationService {
       if (navigator.geolocation) {
         navigator.geolocation.watchPosition(
           position => {
-            debugger;
+            //debugger;
             obs.next(position);
           },
           error => {
-            debugger;
+            //debugger;
             obs.error(error);
           },
           this.geoOptions

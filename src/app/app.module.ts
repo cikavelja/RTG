@@ -6,7 +6,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotifyComponent } from './notify/notify.component';
 import { SecurityService } from './security/security.service';
 import { LoginComponent } from './security/login.component';
 import { HttpInterceptorModule } from './security/http-interceptor.module';
@@ -27,8 +26,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderserviceService } from './shared/loaderservice.service';
 import { DownloadComponent } from './download/download/download.component';
 import { APP_BASE_HREF } from '@angular/common';
-//import { HttpClientModule } from '@angular/common/http'; 
-//import { HttpModule } from '@angular/http';
+import { FullmapComponent } from './fullmap/fullmap.component';
+import { HistoryComponent } from './history/history.component';
+import { HistoryService } from './history/history.service';
+
 
 
 
@@ -36,7 +37,6 @@ import { APP_BASE_HREF } from '@angular/common';
   declarations: [
     AppComponent,
     DashboardComponent,
-    NotifyComponent,
     LoginComponent,
     ErrorComponent,
     RegisterComponent,
@@ -45,7 +45,10 @@ import { APP_BASE_HREF } from '@angular/common';
     RtgpsComponent,
     TestComponent,
     LoaderComponent,
-    DownloadComponent
+    DownloadComponent,
+    FullmapComponent,
+    HistoryComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -54,20 +57,21 @@ import { APP_BASE_HREF } from '@angular/common';
     AppRoutingModule,
     HttpInterceptorModule,
     BrowserAnimationsModule,
-    // ToastrModule.forRoot({
-    //   timeOut: 2000,
-    //   positionClass: 'toast-top-right',
-    //   preventDuplicates: false
-    // }),
     ToastrModule.forRoot({
-      positionClass :'toast-bottom-right'
+      timeOut: 2000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false
     }),
+    // ToastrModule.forRoot({
+    //   positionClass :'toast-bottom-right'
+    // }),
     LeafletModule,
     MatProgressSpinnerModule
   ],
   providers: [
     SecurityService,
-     RtgpsService,
+    RtgpsService,   
+    HistoryService,
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
     {provide: APP_BASE_HREF, useValue: '/dashboard'}

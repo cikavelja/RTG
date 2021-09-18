@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { CONFIGURATION } from '../app.constants';
 import { GPSData } from './GPSData';
-
+import { MSGData } from './MSGData';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -69,12 +69,13 @@ export class RtgpsService {
   }
   private registerOnServerEvents(): void {
     //debugger;  
-    this.proxy.on('cordReceived', (lat: string, lon: string, speed: string) => {
-      console.log('received in GPSService: ' + JSON.stringify(lat) + JSON.stringify(lon));
+    this.proxy.on('cordReceived', (lat: string, lon: string, speed: string, user: string) => {
+      console.log('received in GPSService: ' + JSON.stringify(lat) + JSON.stringify(lon)+ JSON.stringify(speed)+ JSON.stringify(user));
       let gdata = new GPSData();
       gdata.lat = lon;
       gdata.lon = lat;
       gdata.speed = speed;
+      gdata.user = user;
 
       this.messageReceived.emit(gdata);
     });

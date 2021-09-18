@@ -20,7 +20,7 @@ export class AppComponent {
 
     
   }
-  private logout(): void {
+  public logout(): void {
     this.securityService.logout();
 
   }

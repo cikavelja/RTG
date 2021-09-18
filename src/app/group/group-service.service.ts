@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+//import { Group } from './room';
 import { AppUser } from '../security/app-user';
 import { CONFIGURATION } from '../app.constants';
 import { Group } from './GroupModel';

@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="form-group">
+        <label class="col-form-label" for="inputDefault">Enter user name</label>
+        <input
+        [(ngModel)]="user"
+          type="text"
+          class="form-control"
+          placeholder="Enter user name"
+          id="inputUserName"
+        />
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="form-group">
+        <label class="col-form-label" for="inputStart">Select start date</label>
+        <input
+        [(ngModel)]="start"
+          type="datetime-local"
+          class="form-control"
+          placeholder="Select start date"
+          id="inputStart"
+        />
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="form-group">
+        <label class="col-form-label" for="inputEnd">Select end date</label>
+        <input
+        [(ngModel)]="end"
+          type="datetime-local"
+          class="form-control"
+          placeholder="Select end date"
+          id="inputEnd"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <button type="submit" (click)="getHistories()" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+  <div class="row">
+    <ul>
+      <li *ngFor="let history of histories">
+        {{ history.sender }}{{ history.speed }}
+      </li>
+    </ul>
+  </div>
+  <div class="row">
+    <div >
+        <div id="map" class="full-width"></div>
+      </div>
+      <div id="popup" class="ol-popup">
+        
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+      </div>
+  </div>
+</div>
+

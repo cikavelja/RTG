@@ -14,14 +14,15 @@ export class LoginComponent implements OnInit {
   securityObject: AppUserAuth = null;
   constructor(private securityService: SecurityService,private router: Router,) { }
   login() {
-    debugger;
+    //debugger;
     this.securityService.login(this.user)
       .subscribe(
         resp => {
           this.securityObject = resp;
           this.securityObject.isAuthenticated=true;
           this.securityObject.userName=this.user.userName;
-          this.router.navigate(['group']);
+          debugger;
+          this.router.navigate(['/']);
 
         },
         () => {

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotifyComponent } from './notify/notify.component';
 import { LoginComponent } from './security/login.component';
 import { ErrorComponent } from './core/error.component';
 import { RegisterComponent } from './register/register.component';
@@ -10,6 +9,8 @@ import { GroupComponent } from './group/group.component';
 import { RtgpsComponent } from './notify/rtgps.component';
 import { TestComponent } from './leaflet/test.component';
 import { DownloadComponent } from './download/download/download.component';
+import { FullmapComponent } from './fullmap/fullmap.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   {
@@ -17,8 +18,8 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 't', 
-    component: TestComponent
+    path: 'map', 
+    component: FullmapComponent
   },  
   {
     path: 'tracker', 
@@ -35,10 +36,6 @@ const routes: Routes = [
   {
     path: 'login', 
     component: LoginComponent
-  },  
-  {
-    path: 'n', 
-    component: NotifyComponent
   }, 
   {
     path: 'dashboard', 
@@ -47,6 +44,10 @@ const routes: Routes = [
   {
     path: 'download',
     component: DownloadComponent
+  },
+  {
+    path: 'history',
+    component: HistoryComponent
   },
   {
     path: '', redirectTo: '/dashboard', pathMatch: 'full'

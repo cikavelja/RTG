@@ -1,12 +1,4 @@
-.full-width {
-    width: 100vw;
-    height: 80%;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-}
+
 #map {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     height: 865px;

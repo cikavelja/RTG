@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-//import { Group } from './group';
+//import { Group } from './room';
 import { GroupService } from './group-service.service';
 import { AppUser } from '../security/app-user';
 import { group } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-//import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { SecurityService } from '../security/security.service';
 import { RtgpsService } from '../notify/rtgps.service';
 import { Group } from './GroupModel';
@@ -24,29 +24,27 @@ export class GroupComponent implements OnInit {
   constructor(private groupService: GroupService,
     private route: ActivatedRoute,
     private location: Location,
-    //private tostr: ToastrService,
+    private tostr: ToastrService,
     private security: SecurityService,
     private _rtgpsService: RtgpsService,
     ) { }
 
   ngOnInit() {
-    debugger;
+    //debugger;
     this._rtgpsService.connectionEstablished.subscribe(() => {
       //this.canSendMessage = true;
     });
     this.getGroups();
   }
 
-  private getUser(): void {
+  public getUser(): void {
     this.groupService.getUser(this.search)
       .subscribe(user => this.user = user,
-        err => console.error(err.message),
+        err => this.tostr.error("Error!", err.message),
         () => this.userFound());
   }
 
   private getGroups(): void {
-
-    
     this.groupService.getGroups()
       .subscribe(groups => this.groups = groups,
         err => this.userErrorFound(err),
@@ -55,17 +53,17 @@ export class GroupComponent implements OnInit {
 
   deleteGroup(id: string): void {
     debugger;
-    if (confirm("Delete this product?")) {
+    if (confirm("Delete this group?")) {
       this.groupService.deleteGroup(id)
         .subscribe(
           () => this.groups = this.groups.filter(p => p.roomName != id),
-          err => console.error(err.message),
+          err => this.tostr.error("Error!", err.message),
           () => this.removeUserWS(id));
     }
   }
 
   removeUserWS(id: string): void {
-    debugger;
+    //debugger;
     this._rtgpsService.removeUserFromRoom(id);
   }
 
@@ -79,7 +77,7 @@ export class GroupComponent implements OnInit {
     } 
   }
   userErrorFound(err:any): void {
-    //this.tostr.error("Error!", err.message);
+    this.tostr.error("Error!", err.message);
     this.showAddUser = false;
   }
 
@@ -88,9 +86,9 @@ export class GroupComponent implements OnInit {
       // Update product
       this.groupService.addGroup(this.user)
         .subscribe(groups => { this.user = groups },
-          err => console.error(err.message),
+          err => this.tostr.error("Error!", err.message),
           () => this.getGroups());
-          debugger;
+          //debugger;
           this._rtgpsService.addUserToRoom(this.user.userName);
         }
     this.showAddUser = false;
@@ -99,7 +97,7 @@ export class GroupComponent implements OnInit {
     // Redirect back to list
     //this.goBack();
 
-    //this.tostr.success("Success!", "User added!")
+    this.tostr.success("Success!", "User added!")
   }
 
   

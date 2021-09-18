@@ -11,10 +11,8 @@ import { Router } from '@angular/router';
 
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-
-//import { ToastrService } from 'ngx-toastr';
-
 import { SecurityService } from '../../security/security.service';
+import { ToastrService } from 'ngx-toastr';
 import { LoaderserviceService } from '../../shared/loaderservice.service';
 
 @Injectable()
@@ -50,7 +48,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                 if (error.status === 401) {
                     this.security.redirecttologin();
                 }
-                return throwError(error);
+                return throwError(() => new Error(error.message));
 
             }));
     }
